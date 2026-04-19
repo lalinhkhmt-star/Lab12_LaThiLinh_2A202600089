@@ -1,218 +1,124 @@
-#  Delivery Checklist — Day 12 Lab Submission
+# Delivery Checklist — Day 12 Lab Submission
 
-> **Student Name:** _________________________  
-> **Student ID:** _________________________  
-> **Date:** _________________________
-
----
-
-##  Submission Requirements
-
-Submit a **GitHub repository** containing:
-
-### 1. Mission Answers (40 points)
-
-Create a file `MISSION_ANSWERS.md` with your answers to all exercises:
-
-```markdown
-# Day 12 Lab - Mission Answers
-
-## Part 1: Localhost vs Production
-
-### Exercise 1.1: Anti-patterns found
-1. [Your answer]
-2. [Your answer]
-...
-
-### Exercise 1.3: Comparison table
-| Feature | Develop | Production | Why Important? |
-|---------|---------|------------|----------------|
-| Config  | ...     | ...        | ...            |
-...
-
-## Part 2: Docker
-
-### Exercise 2.1: Dockerfile questions
-1. Base image: [Your answer]
-2. Working directory: [Your answer]
-...
-
-### Exercise 2.3: Image size comparison
-- Develop: [X] MB
-- Production: [Y] MB
-- Difference: [Z]%
-
-## Part 3: Cloud Deployment
-
-### Exercise 3.1: Railway deployment
-- URL: https://your-app.railway.app
-- Screenshot: [Link to screenshot in repo]
-
-## Part 4: API Security
-
-### Exercise 4.1-4.3: Test results
-[Paste your test outputs]
-
-### Exercise 4.4: Cost guard implementation
-[Explain your approach]
-
-## Part 5: Scaling & Reliability
-
-### Exercise 5.1-5.5: Implementation notes
-[Your explanations and test results]
-```
+> **Student Name:** Lã Thị Linh  
+> **Student ID:** 2A202600089  
+> **Date:** 20/04/2026  
+> **GitHub Repository:** `https://github.com/lalinhkhmt-star/Lab12_LaThiLinh_2A202600089.git`
 
 ---
 
-### 2. Full Source Code - Lab 06 Complete (60 points)
+## Current Status
 
-Your final production-ready agent with all files:
-
-```
-your-repo/
-├── app/
-│   ├── main.py              # Main application
-│   ├── config.py            # Configuration
-│   ├── auth.py              # Authentication
-│   ├── rate_limiter.py      # Rate limiting
-│   └── cost_guard.py        # Cost protection
-├── utils/
-│   └── mock_llm.py          # Mock LLM (provided)
-├── Dockerfile               # Multi-stage build
-├── docker-compose.yml       # Full stack
-├── requirements.txt         # Dependencies
-├── .env.example             # Environment template
-├── .dockerignore            # Docker ignore
-├── railway.toml             # Railway config (or render.yaml)
-└── README.md                # Setup instructions
-```
-
-**Requirements:**
--  All code runs without errors
--  Multi-stage Dockerfile (image < 500 MB)
--  API key authentication
--  Rate limiting (10 req/min)
--  Cost guard ($10/month)
--  Health + readiness checks
--  Graceful shutdown
--  Stateless design (Redis)
--  No hardcoded secrets
+| Area | Status | Evidence |
+|------|--------|----------|
+| Mission answers | Completed | [MISSION_ANSWERS.md](MISSION_ANSWERS.md) |
+| Final production agent | Completed locally | [06-lab-complete](06-lab-complete/README.md) |
+| Docker build and local stack | Completed | Image size `279MB`, local stack ran with `3` agent replicas |
+| Security and reliability checks | Completed locally | `401`, `200`, `429`, `402`, Redis-backed history |
+| Screenshots | Completed for local verification | [screenshots](screenshots/README.md) |
+| Public cloud URL | Pending | Railway/Render/Cloud Run not deployed yet |
+| GitHub visibility review | Pending verify | Remote exists, public access not confirmed in this checklist |
 
 ---
 
-### 3. Service Domain Link
+## Submission Files
 
-Create a file `DEPLOYMENT.md` with your deployed service information:
+- [x] [MISSION_ANSWERS.md](MISSION_ANSWERS.md) completed
+- [x] [DEPLOYMENT.md](DEPLOYMENT.md) created
+- [x] Final source code in [06-lab-complete/app](06-lab-complete/app/main.py)
+- [x] [06-lab-complete/Dockerfile](06-lab-complete/Dockerfile) is multi-stage
+- [x] [06-lab-complete/docker-compose.yml](06-lab-complete/docker-compose.yml) defines full stack
+- [x] [06-lab-complete/.env.example](06-lab-complete/.env.example) exists
+- [x] [06-lab-complete/.dockerignore](06-lab-complete/.dockerignore) exists
+- [x] [06-lab-complete/railway.toml](06-lab-complete/railway.toml) and [06-lab-complete/render.yaml](06-lab-complete/render.yaml) prepared
+- [x] [screenshots/dashboard.png](screenshots/dashboard.png), [screenshots/running.png](screenshots/running.png), [screenshots/test.png](screenshots/test.png) created
+- [ ] Actual public deployment URL added to `DEPLOYMENT.md`
 
-```markdown
-# Deployment Information
+---
 
-## Public URL
-https://your-agent.railway.app
+## Requirement Audit
 
-## Platform
-Railway / Render / Cloud Run
+- [x] All code runs without errors in local verification
+- [x] Multi-stage Dockerfile
+- [x] Docker image under `500MB`
+- [x] API key authentication
+- [x] Rate limiting `10 req/min`
+- [x] Cost guard `$10/month`
+- [x] Health check endpoint
+- [x] Readiness check endpoint
+- [x] Graceful shutdown
+- [x] Stateless design with Redis
+- [x] Structured JSON logging
+- [x] No hardcoded secrets in code
+- [x] Production readiness validator passed `20/20`
+- [ ] Public URL deployed and accessible from cloud
 
-## Test Commands
+---
 
-### Health Check
-```bash
-curl https://your-agent.railway.app/health
-# Expected: {"status": "ok"}
-```
+## Pre-Submission Checklist
 
-### API Test (with authentication)
-```bash
-curl -X POST https://your-agent.railway.app/ask \
-  -H "X-API-Key: YOUR_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"user_id": "test", "question": "Hello"}'
-```
-
-## Environment Variables Set
-- PORT
-- REDIS_URL
-- AGENT_API_KEY
-- LOG_LEVEL
-
-## Screenshots
-- [Deployment dashboard](screenshots/dashboard.png)
-- [Service running](screenshots/running.png)
-- [Test results](screenshots/test.png)
-```
-
-##  Pre-Submission Checklist
-
-- [ ] Repository is public (or instructor has access)
-- [ ] `MISSION_ANSWERS.md` completed with all exercises
+- [ ] Repository is public or instructor has access
+- [x] `MISSION_ANSWERS.md` completed with exercise answers
 - [ ] `DEPLOYMENT.md` has working public URL
-- [ ] All source code in `app/` directory
-- [ ] `README.md` has clear setup instructions
-- [ ] No `.env` file committed (only `.env.example`)
-- [ ] No hardcoded secrets in code
+- [x] All source code is present in `06-lab-complete/app/`
+- [x] `README.md` has setup instructions
+- [x] No `.env` file is tracked by Git
+- [x] No hardcoded secrets in code
 - [ ] Public URL is accessible and working
-- [ ] Screenshots included in `screenshots/` folder
+- [x] Screenshots included in `screenshots/`
 - [ ] Repository has clear commit history
 
+Notes:
+- Local file `06-lab-complete/.env` exists for Docker testing, but `.gitignore` excludes `.env`.
+- Git remote is configured to GitHub, but this checklist does not confirm whether the repo is public.
+- Current local log shows only one visible commit, so commit history should be reviewed before submitting.
+
 ---
 
-##  Self-Test
+## Self-Test Results
 
-Before submitting, verify your deployment:
+| Test | Result |
+|------|--------|
+| `GET /health` | `200 OK` |
+| `GET /ready` | `200 OK` |
+| `POST /ask` without API key | `401 Unauthorized` |
+| `POST /ask` with valid API key | `200 OK` |
+| Rate limit exceeded | `429 Too Many Requests` |
+| Budget guard with very low budget | `402 Payment Required` |
+| Load balancing through Nginx | Requests observed across `3` instance IDs |
+| Stateless behavior | History persisted after removing one agent replica |
+| Production readiness script | `20/20` checks passed |
+| Docker image size | `279MB` |
 
-```bash
-# 1. Health check
-curl https://your-app.railway.app/health
+---
 
-# 2. Authentication required
-curl https://your-app.railway.app/ask
-# Should return 401
+## Evidence Links
 
-# 3. With API key works
-curl -H "X-API-Key: YOUR_KEY" https://your-app.railway.app/ask \
-  -X POST -d '{"user_id":"test","question":"Hello"}'
-# Should return 200
+- Mission answers: [MISSION_ANSWERS.md](MISSION_ANSWERS.md)
+- Deployment notes: [DEPLOYMENT.md](DEPLOYMENT.md)
+- Final project README: [06-lab-complete/README.md](06-lab-complete/README.md)
+- Main application: [06-lab-complete/app/main.py](06-lab-complete/app/main.py)
+- Docker stack: [06-lab-complete/docker-compose.yml](06-lab-complete/docker-compose.yml)
+- Production validator: [06-lab-complete/check_production_ready.py](06-lab-complete/check_production_ready.py)
+- Screenshot index: [screenshots/README.md](screenshots/README.md)
 
-# 4. Rate limiting
-for i in {1..15}; do 
-  curl -H "X-API-Key: YOUR_KEY" https://your-app.railway.app/ask \
-    -X POST -d '{"user_id":"test","question":"test"}'; 
-done
-# Should eventually return 429
+---
+
+## Remaining Actions Before Submission
+
+1. Commit current changes and push them to GitHub.
+2. Verify the GitHub repository is public or instructor-accessible.
+3. Deploy the service to Railway or Render.
+4. Update [DEPLOYMENT.md](DEPLOYMENT.md) with the real public URL and real cloud test commands.
+5. Re-run the self-test against the public URL.
+6. If required by instructor, add a real cloud dashboard screenshot in addition to the local verification screenshots.
+
+---
+
+## Suggested Final Submission Line
+
+```text
+GitHub repo: https://github.com/lalinhkhmt-star/Lab12_LaThiLinh_2A202600089.git
 ```
 
----
-
-##  Submission
-
-**Submit your GitHub repository URL:**
-
-```
-https://github.com/your-username/day12-agent-deployment
-```
-
-**Deadline:** 17/4/2026
-
----
-
-##  Quick Tips
-
-1.  Test your public URL from a different device
-2.  Make sure repository is public or instructor has access
-3.  Include screenshots of working deployment
-4.  Write clear commit messages
-5.  Test all commands in DEPLOYMENT.md work
-6.  No secrets in code or commit history
-
----
-
-##  Need Help?
-
-- Check [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- Review [CODE_LAB.md](CODE_LAB.md)
-- Ask in office hours
-- Post in discussion forum
-
----
-
-**Good luck! **
+Current blocker: public deployment URL is not available yet.

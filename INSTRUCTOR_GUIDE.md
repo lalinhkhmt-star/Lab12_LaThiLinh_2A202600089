@@ -12,7 +12,7 @@
 | **Part 6: Final Project** | 60     | 60%    |
 | **Total**                 | 100    | 100%   |
 
-**Passing grade:** 80/100
+**Passing grade:** 60/100
 
 ---
 
