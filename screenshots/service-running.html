@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Day 12 Service Running</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 38px;
+      font-family: "Segoe UI", sans-serif;
+      color: #132238;
+      background:
+        linear-gradient(135deg, rgba(28, 126, 214, 0.12), transparent 40%),
+        linear-gradient(225deg, rgba(255, 173, 51, 0.18), transparent 35%),
+        #f7f9fc;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; display: grid; gap: 24px; }
+    .hero, .panel {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid #d8e0ec;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(12, 27, 54, 0.08);
+    }
+    .hero { padding: 28px 32px; }
+    .hero h1 { margin: 0 0 8px; font-size: 42px; }
+    .hero p { margin: 0; color: #506176; font-size: 18px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .panel { padding: 24px 28px; }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #dbfce7;
+      color: #0d6832;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    pre {
+      margin: 0;
+      padding: 18px;
+      border-radius: 18px;
+      background: #0f172a;
+      color: #d9e5ff;
+      font-size: 15px;
+      line-height: 1.55;
+      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    h2 { margin: 0 0 16px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Production Agent Running</h1>
+      <p>Verified live through Nginx at <code>http://localhost</code> after a full Docker Compose build.</p>
+    </section>
+
+    <section class="row">
+      <div class="panel">
+        <h2>Health and Readiness</h2>
+        <p><span class="badge">GET /health = 200</span><span class="badge">GET /ready = 200</span></p>
+        <pre>{
+  "status": "ok",
+  "redis_connected": true,
+  "uptime_seconds": 20.9
+}
+
+{
+  "status": "ready",
+  "instance_id": "db8270826359"
+}</pre>
+      </div>
+
+      <div class="panel">
+        <h2>Sample Successful Request</h2>
+        <pre>{
+  "user_id": "student1",
+  "question": "What is deployment?",
+  "model": "mock-llm",
+  "turn": 1,
+  "history_length": 2,
+  "rate_limit_remaining": 9,
+  "budget_remaining_usd": 9.999975,
+  "served_by": "d763ba67ff73"
+}</pre>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

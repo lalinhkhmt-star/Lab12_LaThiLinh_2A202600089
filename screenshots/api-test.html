@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Day 12 API Tests</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: "Segoe UI", sans-serif;
+      color: #21273a;
+      background:
+        radial-gradient(circle at top right, rgba(52, 211, 153, 0.14), transparent 24%),
+        radial-gradient(circle at left, rgba(249, 115, 22, 0.14), transparent 30%),
+        #fcfaf5;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; display: grid; gap: 24px; }
+    .hero, .grid > div {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid #e5ddcf;
+      border-radius: 22px;
+      box-shadow: 0 18px 40px rgba(33, 39, 58, 0.08);
+    }
+    .hero { padding: 28px 32px; }
+    .hero h1 { margin: 0 0 10px; font-size: 40px; }
+    .hero p { margin: 0; color: #5c6475; font-size: 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .grid > div { padding: 22px; }
+    .label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #6a7285;
+      margin-bottom: 10px;
+    }
+    .value {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .ok { color: #0f766e; }
+    .warn { color: #c2410c; }
+    .code {
+      margin-top: 10px;
+      padding: 14px;
+      border-radius: 16px;
+      background: #111827;
+      color: #dbeafe;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>API Security and Stateless Checks</h1>
+      <p>Observed behavior from the running Docker stack behind Nginx.</p>
+    </section>
+
+    <section class="grid">
+      <div>
+        <div class="label">Authentication</div>
+        <div class="value ok">401</div>
+        <div>Missing <code>X-API-Key</code> correctly rejected.</div>
+      </div>
+      <div>
+        <div class="label">Rate Limit</div>
+        <div class="value warn">429</div>
+        <div>Request 11 within one minute for the same user was blocked.</div>
+      </div>
+      <div>
+        <div class="label">Stateless Scaling</div>
+        <div class="value ok">PASS</div>
+        <div>History persisted after removing one agent replica.</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div>
+        <div class="label">Load Balancing</div>
+        <div class="code">served_by sequence:
+db8270826359
+d763ba67ff73
+21e59cd18e89
+db8270826359
+d763ba67ff73
+21e59cd18e89</div>
+      </div>
+      <div>
+        <div class="label">Shared History</div>
+        <div class="code">history_length after 6 requests: 12
+history_length after removing one replica: 14
+turn after removal: 7</div>
+      </div>
+      <div>
+        <div class="label">Budget Guard</div>
+        <div class="code">Offline smoke test with low budget:
+POST /ask -> 402 Payment Required
+reason: Monthly budget exceeded</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

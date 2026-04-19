@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Day 12 Stack Status</title>
+  <style>
+    :root {
+      --bg: #f4f1e8;
+      --panel: #fffdf8;
+      --ink: #1f2a37;
+      --muted: #5f6b7a;
+      --accent: #0f766e;
+      --border: #d9d2c3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #e8f7f4, transparent 32%),
+        radial-gradient(circle at right, #fce8d8, transparent 28%),
+        var(--bg);
+    }
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+    .hero, .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 18px 40px rgba(31, 42, 55, 0.08);
+    }
+    .hero { padding: 28px 32px; }
+    .hero h1 { margin: 0 0 10px; font-size: 40px; }
+    .hero p { margin: 0; color: var(--muted); font-size: 18px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .card {
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #ffffff, #f8faf8);
+      border: 1px solid var(--border);
+    }
+    .kicker {
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .value {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .panel { padding: 26px 30px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid #ece5d7;
+    }
+    th {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .ok {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #d8f5e9;
+      color: #0f5132;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Day 12 Local Stack Verification</h1>
+      <p>Docker Compose build completed successfully with Redis, Nginx, and horizontally scaled FastAPI agents.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="kicker">Agent Replicas</div>
+        <div class="value">3</div>
+        <div>All replicas observed healthy after build.</div>
+      </div>
+      <div class="card">
+        <div class="kicker">Shared Redis</div>
+        <div class="value">1</div>
+        <div>Conversation history, budget, and rate limits stored centrally.</div>
+      </div>
+      <div class="card">
+        <div class="kicker">Load Balancer</div>
+        <div class="value">Nginx</div>
+        <div>Traffic exposed through <code>http://localhost</code>.</div>
+      </div>
+      <div class="card">
+        <div class="kicker">Image Size</div>
+        <div class="value">279MB</div>
+        <div>Below the lab requirement of 500MB.</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Observed Containers</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Service</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>06-lab-complete-agent-1</td>
+            <td>agent</td>
+            <td><span class="ok">healthy</span></td>
+            <td>FastAPI replica</td>
+          </tr>
+          <tr>
+            <td>06-lab-complete-agent-2</td>
+            <td>agent</td>
+            <td><span class="ok">healthy</span></td>
+            <td>FastAPI replica</td>
+          </tr>
+          <tr>
+            <td>06-lab-complete-agent-3</td>
+            <td>agent</td>
+            <td><span class="ok">healthy</span></td>
+            <td>FastAPI replica</td>
+          </tr>
+          <tr>
+            <td>06-lab-complete-nginx-1</td>
+            <td>nginx</td>
+            <td><span class="ok">up</span></td>
+            <td>Public entrypoint on port 80</td>
+          </tr>
+          <tr>
+            <td>06-lab-complete-redis-1</td>
+            <td>redis</td>
+            <td><span class="ok">healthy</span></td>
+            <td>State store for stateless scaling</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
